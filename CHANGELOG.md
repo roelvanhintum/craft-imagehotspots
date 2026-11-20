@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+### Fixed
+
+-   Fields created before 3.1.0 no longer turn into a missing field after updating. A migration points them at the new namespace.
+-   #22 Fixed a `TypeError` when the field is used on an asset without a related asset field handle
+
 ## 3.1.0 - 2025-11-23
 
 ### Breaking
