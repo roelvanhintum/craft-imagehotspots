@@ -188,9 +188,9 @@ class ImageHotspots extends Field
     /**
      * Determine the owner of a field, by looping through the parents.
      */
-    private function determineFieldOwner(string $fieldHandle, ElementInterface|NestedElementInterface|null $element = null): ?ElementInterface
+    private function determineFieldOwner(?string $fieldHandle, ElementInterface|NestedElementInterface|null $element = null): ?ElementInterface
     {
-        if ($element instanceof Asset || (strlen($fieldHandle) && isset($element->$fieldHandle))) {
+        if ($element instanceof Asset || ($fieldHandle && isset($element->$fieldHandle))) {
             return $element;
         }
 
