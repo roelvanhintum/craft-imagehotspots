@@ -5,9 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## Unreleased
 
+> **Note**
+> The migration changes the project config. Run `craft up` in an environment that allows admin changes and commit the result before deploying to environments that don't, or `craft up` will fail there.
+
 ### Fixed
 
 -   Fields created before 3.1.0 no longer turn into a missing field after updating. A migration points them at the new namespace.
+-   Fixed a `TypeError` in the hotspot editor when a nested entry without a title has a non-text custom field with the handle `label`
 -   #22 Fixed a `TypeError` when the field is used on an asset without a related asset field handle
 
 ## 3.1.0 - 2025-11-23
