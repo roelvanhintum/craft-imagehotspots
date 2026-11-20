@@ -164,12 +164,10 @@ class ImageHotspots extends Field
      */
     private function determineElementLabel(ElementInterface|null $element = null): string|null
     {
-        // Modern matrix elements just have a parent.
-        if ($element instanceof ElementInterface) {
-            return $element?->title ?? $element?->label ?? null;
-        }
+        $label = $element->title ?? $element->label ?? null;
 
-        return null;
+        // A custom field with the handle "label" isn't necessarily text.
+        return is_scalar($label) || $label instanceof \Stringable ? (string)$label : null;
     }
 
     /**
@@ -188,9 +186,9 @@ class ImageHotspots extends Field
     /**
      * Determine the owner of a field, by looping through the parents.
      */
-    private function determineFieldOwner(string $fieldHandle, ElementInterface|NestedElementInterface|null $element = null): ?ElementInterface
+    private function determineFieldOwner(?string $fieldHandle, ElementInterface|NestedElementInterface|null $element = null): ?ElementInterface
     {
-        if ($element instanceof Asset || (strlen($fieldHandle) && isset($element->$fieldHandle))) {
+        if ($element instanceof Asset || ($fieldHandle && isset($element->$fieldHandle))) {
             return $element;
         }
 
